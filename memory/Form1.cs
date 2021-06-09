@@ -43,6 +43,14 @@ namespace memory
                 listBox1.Items.Add(vetorNum[i]);
             }
         }
+        void ViraCarta(object sender, EventArgs e)
+        {
+            int contaClick = 0;
+            contaClick++;
+            string nomeCarta = (sender as PictureBox).Name;
+            int n = int.Parse(nomeCarta.Replace("carta", ""));
+            card[n].Load("imagem" + vetorNum[n] + ".png");
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             GerarVetor();
@@ -61,10 +69,13 @@ namespace memory
                 card[i].Top += 50 + y;
                 card[i].Width = 80;
                 card[i].Height = 80;
-                card[i].Load("imagem" + vetorNum[i] + ".png");
+                card[i].Load("imagem0.png");
                 card[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 x += 100;
+                card[i].Name = "carta" + i;
+                card[i].Click += ViraCarta;
             }
+            button1.Visible = false;
         }
     }
 }
